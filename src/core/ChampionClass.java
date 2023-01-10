@@ -9,6 +9,15 @@ public class ChampionClass {
     String weapon;
     Boolean talk;
 
+    Integer lifeForce;
+
+    public Integer getLifeForce() {
+        return lifeForce;
+    }
+
+    public void setLifeForce(Integer lifeForce) {
+        this.lifeForce = lifeForce;
+    }
 
     public ChampionClass(String name, int skillLevel, Boolean nacromancer, Integer entryFee, String spell, String weapon, Boolean talk){
         this.name = name;
@@ -99,6 +108,7 @@ public class ChampionClass {
                 ", spell='" + spell + '\'' +
                 ", weapon='" + weapon + '\'' +
                 ", talk=" + talk +
+                ", lifeForce=" + lifeForce +
                 '}' + "\n";
     }
 }

@@ -26,7 +26,6 @@ public class Tournament implements CORE
     public static LinkedHashSet<Champion> championList = new LinkedHashSet<>();
     public static LinkedHashSet<Challenge> challengeList = new LinkedHashSet<>();
     public static LinkedHashSet<Champion> playerTeam = new LinkedHashSet<>();
-
     String playerName;
 
     Treasury treasury = new Treasury();
@@ -164,7 +163,6 @@ public class Tournament implements CORE
      * @return a String representation of all champions in reserve
      **/
     public String getReserve(){
-        setUpChampion();
        return championList.toString();
     }
        
@@ -218,6 +216,7 @@ public class Tournament implements CORE
                     if(playerTeam.add(ch)){
                         championList.remove(ch);
                         Treasury.balance -= ch.getChampClass().getEntryFee();
+                        System.out.println("Added successful" + " " + getMoney());
                         return 0;
                     }else {
                         ch.setState(ChampionState.WAITING);
@@ -260,17 +259,21 @@ public class Tournament implements CORE
             count++;
             if(ch.getName().equals(nme)){
                 if(ch.state.equals(ChampionState.DEAD)){
+                    System.out.println("Champion is dead, cannot retire");
                     return 1;
                 }else {
                     Treasury.balance += ch.getChampClass().getEntryFee()/2;
+                    System.out.println("Retired successful");
                     playerTeam.remove(ch);
                     return 0;
                 }
             }
         }
         if(count == playerTeam.size()){
+            System.out.println("Champion is not in team, cannot retire");
             return 2;
         }
+
        return -1;
     }
         
@@ -281,7 +284,7 @@ public class Tournament implements CORE
      **/
     public String getTeam(){
         
-       return "";
+       return playerTeam.toString();
     }
     
     
@@ -359,12 +362,28 @@ public class Tournament implements CORE
             return -1;
         } else {
             for(Champion ch : playerTeam){
-                if(ch.getChampClass().name.equals(Cons.wizard) && ch.state.equals(ChampionState.ACTIVE)){
+                if(ch.getChampClass().name.equals(Cons.mergim) && ch.state.equals(ChampionState.ACTIVE) && targetedChallenge.type.equals(ChallengeType.MAGIC)){
                     if(ch.getChampClass().getSkillLevel() > targetedChallenge.skillRequired){
                         Treasury.balance += targetedChallenge.Reward;
+                        System.out.println("Challenge won, treasury added " + targetedChallenge.getReward());
                         return 0;
                     }else {
                         Treasury.balance -= targetedChallenge.Reward;
+                        System.out.println("Challenge lost on skill, treasury deducted " + targetedChallenge.getReward());
+                        ch.state = ChampionState.DEAD;
+                        championList.add(ch);
+                        return 1;
+                    }
+                }
+
+                if(ch.getChampClass().name.equals(Cons.wizard) && ch.state.equals(ChampionState.ACTIVE)){
+                    if(ch.getChampClass().getSkillLevel() > targetedChallenge.skillRequired){
+                        Treasury.balance += targetedChallenge.Reward;
+                        System.out.println("Challenge won, treasury added " + targetedChallenge.getReward());
+                        return 0;
+                    }else {
+                        Treasury.balance -= targetedChallenge.Reward;
+                        System.out.println("Challenge lost on skill, treasury deducted " + targetedChallenge.getReward());
                         ch.state = ChampionState.DEAD;
                         championList.add(ch);
                         return 1;
@@ -373,9 +392,11 @@ public class Tournament implements CORE
                 if(ch.getChampClass().name.equals(Cons.warrior) && targetedChallenge.type.equals(ChallengeType.FIGHT) && ch.state.equals(ChampionState.ACTIVE)){
                     if(ch.getChampClass().getSkillLevel() > targetedChallenge.skillRequired ){
                         Treasury.balance += targetedChallenge.Reward;
+                        System.out.println("Challenge won, treasury added " + targetedChallenge.getReward());
                         return 0;
                     }else {
                         Treasury.balance -= targetedChallenge.Reward;
+                        System.out.println("Challenge lost on skill, treasury deducted " + targetedChallenge.getReward());
                         ch.state = ChampionState.DEAD;
                         championList.add(ch);
                         return 1;
@@ -388,9 +409,11 @@ public class Tournament implements CORE
                     if(targetedChallenge.type.equals(ChallengeType.FIGHT)){
                         if(ch.getChampClass().getSkillLevel() > targetedChallenge.skillRequired){
                             Treasury.balance += targetedChallenge.Reward;
+                            System.out.println("Challenge won, treasury added " + targetedChallenge.getReward());
                             return 0;
                         }else {
                             Treasury.balance -= targetedChallenge.Reward;
+                            System.out.println("Challenge lost on skill, treasury deducted " + targetedChallenge.getReward());
                             ch.state = ChampionState.DEAD;
                             championList.add(ch);
                             return 1;
@@ -401,9 +424,11 @@ public class Tournament implements CORE
                         if(ch.getChampClass().talk){
                             if(ch.getChampClass().getSkillLevel() > targetedChallenge.skillRequired){
                                 Treasury.balance += targetedChallenge.Reward;
+                                System.out.println("Challenge won, treasury added " + targetedChallenge.getReward());
                                 return 0;
                             }else {
                                 Treasury.balance -= targetedChallenge.Reward;
+                                System.out.println("Challenge lost on skill, treasury deducted " + targetedChallenge.getReward());
                                 ch.state = ChampionState.DEAD;
                                 championList.add(ch);
                                 if(Treasury.balance < 0){
@@ -427,8 +452,10 @@ public class Tournament implements CORE
                 }
             }
             if(count == playerTeam.size() && Treasury.balance < 0){
+                System.out.println("Defeated! No money and no champion to retire ");
                 return 3;
             }
+            System.out.println("Challenge lost due to no matched champion, treasury deducted " + targetedChallenge.getReward());
             return 2;
         }
     }

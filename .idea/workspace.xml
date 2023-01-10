@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4c011c6-9b4d-4fa1-812c-42b291c65f03" name="Changes" comment="" />
+    <list default="true" id="b4c011c6-9b4d-4fa1-812c-42b291c65f03" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/Challenge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Challenge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/ChampionClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/ChampionClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/Cons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Cons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/Tournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Tournament.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,10 +24,14 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2JSK60hrlQPzh1Yk8m7JA0MXYVX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,7 +56,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.All in core-studentsIntelliJ">
     <configuration name="All in core-studentsIntelliJ" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="core-studentsIntelliJ" />
       <option name="PACKAGE_NAME" value="" />
@@ -115,7 +126,7 @@
       <workItem from="1673085063402" duration="29432000" />
       <workItem from="1673117836634" duration="3014000" />
       <workItem from="1673298169995" duration="545000" />
-      <workItem from="1673344525381" duration="3113000" />
+      <workItem from="1673344525381" duration="10148000" />
     </task>
     <servers />
   </component>

@@ -78,6 +78,6 @@ public class Challenge {
                 ", enemyName='" + enemyName + '\'' +
                 ", skillRequired=" + skillRequired +
                 ", Reward=" + Reward +
-                '}';
+                '}' +"\n";
     }
 }
